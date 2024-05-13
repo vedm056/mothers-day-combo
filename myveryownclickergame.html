@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>my nifty clicker game!</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+text-align: center;
+background-color: #333;
+color:#fff;
+}
+
+h1 {
+color: #fff;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+#score {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+  color:#fff;
+}
+
+#upgrades {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#upgrades li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+#upgrades button {
+  background-color: #008CBA;
+}
+
+#upgrades button:hover {
+  background-color: #006B8F;
+}
+
+#upgrades span {
+  display: block;
+  font-size: 12px;
+  margin-top: 5px;
+}
+#rules{
+  width:400px;
+  height:200px;
+  margin-left:35%;
+  overflow-y:scroll;
+}
+</style>
+</head>
+<body>
+<h1>click button to earn points</h1>
+<button id="clickButton">Click me!</button>
+<p id="score">Score: 0</p>
+<h2>Upgrades</h2>
+<ul id="upgrades">
+  <li>
+    <button id="upgrade1">Upgrade 1 (Cost: 10)</button>
+    <span id="upgrade1Cost">10</span>
+  </li>
+  <li>
+    <button id="upgrade2">Upgrade 2 (Cost: 50)</button>
+    <span id="upgrade2Cost">50</span>
+  </li>
+  <li>
+    <button id="upgrade3">Upgrade 3 (Cost: 100)</button>
+    <span id="upgrade3Cost">100</span>
+  </li>
+</ul>
+<div id="rules">
+  <h2>rules</h2>
+  <p>the following game can be played by clicking the button and as the button is clicked you will increase your score. then when you ahve enough money for upgrades you can purchase them. the upgrade cost is located beneath the upgrade buttons. every time you purchase an upgrade <b>nothing will happen</b>, but it will give you points which are located to the right of the click me text on the button. for example: you buy upgrade 1 and then your button symbol will be Click me!(x2) and then if you click it again it will be Click me!(x4). this is how the game works.</p>
+</div>
+<script>
+var score = 0;
+var clickButton = document.getElementById("clickButton");
+var scoreDisplay = document.getElementById("score");
+var upgrade1Button = document.getElementById("upgrade1");
+var upgrade1CostDisplay = document.getElementById("upgrade1Cost");
+var upgrade2Button = document.getElementById("upgrade2");
+var upgrade2CostDisplay = document.getElementById("upgrade2Cost");
+var upgrade3Button = document.getElementById("upgrade3");
+var upgrade3CostDisplay = document.getElementById("upgrade3Cost");
+var upgrade1Cost = 10;
+var upgrade2Cost = 50;
+var upgrade3Cost = 100;
+var upgrade1Multiplier = 2;
+var upgrade2Multiplier = 5;
+var upgrade3Multiplier = 10;
+clickButton.addEventListener("click", function() {
+  score++;
+  scoreDisplay.innerHTML = "Score: " + score;
+});
+
+upgrade1Button.addEventListener("click", function() {
+  if (score >= upgrade1Cost) {
+    score -= upgrade1Cost;
+    upgrade1Cost *= 2;
+    upgrade1CostDisplay.innerHTML = upgrade1Cost;
+    clickButtonMultiplier *= upgrade1Multiplier;
+    clickButton.innerHTML = "Click me! (x" + clickButtonMultiplier + ")";
+    scoreDisplay.innerHTML = "Score: " + score;
+  }
+});
+
+upgrade2Button.addEventListener("click", function() {
+  if (score >= upgrade2Cost) {
+    score -= upgrade2Cost;
+    upgrade2Cost *= 2;
+    upgrade2CostDisplay.innerHTML = upgrade2Cost;
+    clickButtonMultiplier *= upgrade2Multiplier;
+    clickButton.innerHTML = "Click me! (x" + clickButtonMultiplier + ")";
+    scoreDisplay.innerHTML = "Score: " + score;
+  }
+});
+
+upgrade3Button.addEventListener("click", function() {
+  if (score >= upgrade3Cost) {
+    score -= upgrade3Cost;
+    upgrade3Cost *= 2;
+    upgrade3CostDisplay.innerHTML = upgrade3Cost;
+    clickButtonMultiplier *= upgrade3Multiplier;
+    clickButton.innerHTML = "Click me! (x" + clickButtonMultiplier + ")";
+    scoreDisplay.innerHTML = "Score: " + score;
+  }
+});
+
+var clickButtonMultiplier = 1;
+clickButton.innerHTML = "Click me! (points: " + clickButtonMultiplier + ")";
+</script>
+</body>
+</html>
